@@ -1,0 +1,66 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="navigatingTo" class="bg-gray-100">
+    <ActionBar title="Food Delivery" class="bg-white">
+        <NavigationButton tap="{{ onProfile }}" android:icon="res://ic_menu_profile" ios:icon="user" />
+        <ActionItem ios.position="right" android.position="right" tap="{{ onViewCart }}">
+            <StackLayout orientation="horizontal">
+                <Label text="🛒" class="text-2xl" />
+                <Label text="{{ cartItemCount }}" class="text-sm bg-red-500 text-white rounded-full px-2" 
+                    visibility="{{ cartItemCount > 0 ? 'visible' : 'collapsed' }}" />
+            </StackLayout>
+        </ActionItem>
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout>
+            <SearchBar hint="Search restaurants or cuisines" 
+                text="{{ searchQuery }}"
+                submit="{{ onSearch }}"
+                clear="{{ onClearSearch }}"
+                textChange="{{ onSearchTextChanged }}"
+                class="m-4" />
+
+            <ScrollView orientation="horizontal" class="m-2">
+                <StackLayout orientation="horizontal">
+                    <Label text="All" 
+                        tap="{{ onCategoryTap }}"
+                        class="category-pill {{ selectedCategory === 'All' ? 'bg-blue-500 text-white' : 'bg-gray-100' }}" />
+                    <Label text="Fast Food" 
+                        tap="{{ onCategoryTap }}"
+                        class="category-pill {{ selectedCategory === 'Fast Food' ? 'bg-blue-500 text-white' : 'bg-gray-100' }}" />
+                    <Label text="Healthy" 
+                        tap="{{ onCategoryTap }}"
+                        class="category-pill {{ selectedCategory === 'Healthy' ? 'bg-blue-500 text-white' : 'bg-gray-100' }}" />
+                    <Label text="Pizza" 
+                        tap="{{ onCategoryTap }}"
+                        class="category-pill {{ selectedCategory === 'Pizza' ? 'bg-blue-500 text-white' : 'bg-gray-100' }}" />
+                    <Label text="Asian" 
+                        tap="{{ onCategoryTap }}"
+                        class="category-pill {{ selectedCategory === 'Asian' ? 'bg-blue-500 text-white' : 'bg-gray-100' }}" />
+                </StackLayout>
+            </ScrollView>
+
+            <ListView items="{{ restaurants }}" class="list-group" separatorColor="transparent" itemTap="{{ onRestaurantTap }}">
+                <ListView.itemTemplate>
+                    <GridLayout rows="auto" columns="*" class="restaurant-card">
+                        <StackLayout>
+                            <Image src="{{ image }}" height="150" stretch="aspectFill" />
+                            <StackLayout class="p-3">
+                                <Label text="{{ name }}" class="text-lg font-bold" />
+                                <FlexboxLayout class="justify-between">
+                                    <Label text="{{ rating }} ⭐" class="text-sm" />
+                                    <Label text="{{ deliveryTime }}" class="text-sm text-gray-500" />
+                                </FlexboxLayout>
+                                <Label text="{{ categories, categories.join(', ') }}" class="text-sm text-gray-500" />
+                                <Label text="{{ priceLevel }}" class="text-sm" />
+                            </StackLayout>
+                        </StackLayout>
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+
+            <Label text="No restaurants found" 
+                class="text-center text-gray-500 p-4" 
+                visibility="{{ restaurants.length === 0 ? 'visible' : 'collapsed' }}" />
+        </StackLayout>
+    </ScrollView>
+</Page>

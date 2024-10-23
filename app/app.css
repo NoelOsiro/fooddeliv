@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.restaurant-card {
+    elevation: 3;
+    border-radius: 8;
+    margin: 8 16;
+    background-color: white;
+}
+
+.category-pill {
+    border-radius: 20;
+    padding: 8 16;
+    margin: 0 4;
+    font-size: 14;
+    font-weight: 500;
+}
+
+.search-highlight {
+    background-color: #fde047;
+    color: #000000;
+}

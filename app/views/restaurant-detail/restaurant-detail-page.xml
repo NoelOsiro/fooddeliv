@@ -1,0 +1,41 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="{{ restaurant.name }}" class="bg-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+        <ActionItem ios.position="right" android.position="right" tap="{{ onViewCart }}">
+            <StackLayout orientation="horizontal">
+                <Label text="🛒" class="text-2xl" />
+                <Label text="{{ cartItemCount }}" class="text-sm bg-red-500 text-white rounded-full px-2" 
+                    visibility="{{ cartItemCount > 0 ? 'visible' : 'collapsed' }}" />
+            </StackLayout>
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout rows="auto, *">
+        <Image src="{{ restaurant.image }}" height="200" stretch="aspectFill" />
+        
+        <ScrollView row="1">
+            <StackLayout class="p-4">
+                <Label text="{{ restaurant.name }}" class="text-2xl font-bold mb-2" />
+                <FlexboxLayout class="justify-between mb-4">
+                    <Label text="{{ restaurant.rating }} ⭐" class="text-sm" />
+                    <Label text="{{ restaurant.deliveryTime }}" class="text-sm text-gray-500" />
+                    <Label text="{{ restaurant.priceLevel }}" class="text-sm" />
+                </FlexboxLayout>
+
+                <ListView items="{{ menuItems }}" class="list-group" separatorColor="transparent">
+                    <ListView.itemTemplate>
+                        <GridLayout columns="*, auto" class="bg-white p-4 rounded-lg mb-2">
+                            <StackLayout col="0">
+                                <Label text="{{ name }}" class="font-bold" />
+                                <Label text="{{ description }}" class="text-sm text-gray-500" textWrap="true" />
+                                <Label text="{{ '$' + price }}" class="text-sm font-bold mt-2" />
+                            </StackLayout>
+                            <Button text="Add" tap="{{ $parent.onAddToCart }}" 
+                                class="bg-blue-500 text-white px-4 py-2 rounded" col="1" />
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </GridLayout>
+</Page>

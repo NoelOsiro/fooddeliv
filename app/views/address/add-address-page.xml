@@ -1,0 +1,29 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Add Address" class="bg-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <Label text="Address Label" class="text-sm text-gray-600 mb-1" />
+            <TextField text="{{ label }}" 
+                hint="Home, Work, etc."
+                class="input p-4 mb-4 bg-white rounded-lg" />
+
+            <Label text="Full Address" class="text-sm text-gray-600 mb-1" />
+            <TextView text="{{ address }}" 
+                hint="Enter your full address"
+                class="input p-4 mb-4 bg-white rounded-lg"
+                height="100" />
+
+            <FlexboxLayout class="mb-4">
+                <Switch checked="{{ isDefault }}" class="mr-2" />
+                <Label text="Set as default address" class="text-gray-700" />
+            </FlexboxLayout>
+
+            <Button text="Save Address" 
+                tap="{{ onSaveAddress }}"
+                class="bg-blue-500 text-white p-4 rounded-lg" />
+        </StackLayout>
+    </ScrollView>
+</Page>

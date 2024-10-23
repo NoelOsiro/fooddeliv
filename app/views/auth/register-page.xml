@@ -1,0 +1,40 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Create Account" class="bg-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <StackLayout class="form">
+                <Label text="Name" class="text-sm text-gray-600 mb-1" />
+                <TextField text="{{ name }}"
+                    hint="Enter your name"
+                    class="input p-4 mb-4 bg-white rounded-lg" />
+
+                <Label text="Email" class="text-sm text-gray-600 mb-1" />
+                <TextField text="{{ email }}"
+                    hint="Enter your email"
+                    keyboardType="email"
+                    autocorrect="false"
+                    autocapitalizationType="none"
+                    class="input p-4 mb-4 bg-white rounded-lg" />
+
+                <Label text="Password" class="text-sm text-gray-600 mb-1" />
+                <TextField text="{{ password }}"
+                    hint="Enter your password"
+                    secure="true"
+                    class="input p-4 mb-4 bg-white rounded-lg" />
+
+                <Label text="Confirm Password" class="text-sm text-gray-600 mb-1" />
+                <TextField text="{{ confirmPassword }}"
+                    hint="Confirm your password"
+                    secure="true"
+                    class="input p-4 mb-6 bg-white rounded-lg" />
+
+                <Button text="Create Account"
+                    tap="{{ onRegister }}"
+                    class="bg-blue-500 text-white p-4 rounded-lg" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

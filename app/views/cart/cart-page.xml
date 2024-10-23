@@ -1,0 +1,30 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Cart" class="bg-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <GridLayout rows="*, auto">
+        <ListView items="{{ cartItems }}" class="list-group" row="0">
+            <ListView.itemTemplate>
+                <GridLayout columns="*, auto, auto" class="bg-white p-4 rounded-lg m-2">
+                    <StackLayout col="0">
+                        <Label text="{{ menuItem.name }}" class="font-bold" />
+                        <Label text="{{ '$' + menuItem.price }}" class="text-sm" />
+                    </StackLayout>
+                    <Label text="{{ quantity }}" class="text-center px-4" col="1" />
+                    <Button text="Remove" tap="{{ $parent.onRemoveItem }}" 
+                        class="bg-red-500 text-white px-4 py-2 rounded" col="2" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+
+        <StackLayout row="1" class="bg-white p-4">
+            <FlexboxLayout class="justify-between mb-4">
+                <Label text="Total:" class="text-lg font-bold" />
+                <Label text="{{ '$' + total }}" class="text-lg font-bold" />
+            </FlexboxLayout>
+            <Button text="Checkout" tap="{{ onCheckout }}" 
+                class="bg-blue-500 text-white py-4 rounded-lg" />
+        </StackLayout>
+    </GridLayout>
+</Page>

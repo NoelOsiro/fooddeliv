@@ -1,0 +1,41 @@
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" class="bg-gray-100">
+    <ActionBar title="Profile" class="bg-white">
+        <NavigationButton text="Back" android.systemIcon="ic_menu_back" />
+    </ActionBar>
+
+    <ScrollView>
+        <StackLayout class="p-4">
+            <StackLayout class="bg-white p-4 rounded-lg mb-4">
+                <Label text="{{ user.name }}" class="text-xl font-bold mb-2" />
+                <Label text="{{ user.email }}" class="text-gray-500" />
+            </StackLayout>
+
+            <StackLayout class="bg-white p-4 rounded-lg mb-4">
+                <Label text="Delivery Addresses" class="text-lg font-bold mb-2" />
+                <ListView items="{{ user.addresses }}" class="list-group" height="{{ user.addresses.length * 80 }}">
+                    <ListView.itemTemplate>
+                        <GridLayout rows="auto, auto" columns="*, auto" class="p-2 border-b border-gray-200">
+                            <Label text="{{ label }}" row="0" col="0" class="font-bold" />
+                            <Label text="{{ address }}" row="1" col="0" class="text-gray-500" textWrap="true" />
+                            <StackLayout row="0" col="1" rowSpan="2" orientation="horizontal">
+                                <Label text="Default" 
+                                    visibility="{{ isDefault ? 'visible' : 'collapsed' }}"
+                                    class="text-green-500 mr-2" />
+                                <Button text="✎" tap="{{ $parent.onEditAddress }}"
+                                    class="bg-transparent text-blue-500 mr-2" />
+                                <Button text="🗑" tap="{{ $parent.onDeleteAddress }}"
+                                    class="bg-transparent text-red-500" 
+                                    visibility="{{ isDefault ? 'collapsed' : 'visible' }}" />
+                            </StackLayout>
+                        </GridLayout>
+                    </ListView.itemTemplate>
+                </ListView>
+                <Button text="Add New Address" tap="{{ onAddAddress }}" 
+                    class="bg-blue-500 text-white p-3 rounded-lg mt-2" />
+            </StackLayout>
+
+            <Button text="Logout" tap="{{ onLogout }}" 
+                class="bg-red-500 text-white p-4 rounded-lg" />
+        </StackLayout>
+    </ScrollView>
+</Page>
